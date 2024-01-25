@@ -57,13 +57,17 @@ router.put('/:id', async (req, res) => {
 
     if (tagData[0] === 0) {
       res.status(404).json({ 
-        message: 'No product exists with the current ID'
+        message: 'No record exists with the current ID'
       });
     } else {
-      res.status(200).json(tagData);
+      const updatedTagData = await Tag.findByPk(req.params.id);
+      res.status(200).json(updatedTagData);
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({
+      error: 'Internal server error',
+      message: err.message
+    });
   }
 });
 
