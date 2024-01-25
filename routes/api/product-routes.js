@@ -38,19 +38,20 @@ router.post('/', (req, res) => {
   Product.create(req.body)
     .then((product) => {
 
-      if (req.body.tagIds && req.body.tagIds.length) {
+      // Check if tagIds is defined and not empty
+      if (req.body.tagIds && req.body.tagIds.length > 0) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
             tag_id,
           };
         });
-        return ProductTag.bulkCreate(productTagIdArr);
+        return ProductTag.bulkCreate(productTagIdArr)
+          .then(() => res.status(200).json(product));
       }
 
       res.status(200).json(product);
     })
-    .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
