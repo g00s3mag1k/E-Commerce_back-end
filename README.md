@@ -24,7 +24,7 @@ Open integrated terminal under the server.js file in VS code, or a code editor o
 - dotenv
 
 (Ex.)
-![Screenshot 2024-01-24 174602](https://github.com/g00s3mag1k/E-Commerce_back-end/assets/141582553/8e42c2a6-803a-472f-8948-b78e6e66400d)
+![Screenshot 2024-01-24 180325](https://github.com/g00s3mag1k/E-Commerce_back-end/assets/141582553/116ced12-3a2b-4ede-9529-cf1c143fdde7)
 ![Screenshot 2024-01-24 175504](https://github.com/g00s3mag1k/E-Commerce_back-end/assets/141582553/cceaf8a1-cb36-4524-a40a-19d0a7dd375c)
 
 ## Credits
