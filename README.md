@@ -8,7 +8,7 @@ This is a E-commerce back-end server application. Insomnia helps with the server
 
 ## Installation
 
-Open integrated terminal under the server.js file in VS code, or a code editor of your choosing, and run 'npm i' before running the application. You must seed the server/database using the "npm i seed" command first in the terminal under the server.js file. To implement and source the database, you must open integrated terminal on "schema.sql" file and open the MySQL shell by logging in using "mysql -u root -p" command. Enter password if you set one up, to source you must enter the command "source schema.sql;" be sure to "quit;" out the MySQL shell. After that run the command 'npm run start' and you can test the server CRUD commands in Insomnia. 
+Open integrated terminal under the server.js file in VS code, or a code editor of your choosing, and run 'npm i' before running the application. You must seed the server/database using the "npm run seed" command first in the terminal under the server.js file. To implement and source the database, you must open integrated terminal on "schema.sql" file and open the MySQL shell by logging in using "mysql -u root -p" command. Enter password if you set one up, to source you must enter the command "source schema.sql;" be sure to "quit;" out the MySQL shell. After that run the command 'npm run start' and you can test the server CRUD commands in Insomnia. 
 
 ## Usage
 
