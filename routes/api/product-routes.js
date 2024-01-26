@@ -33,29 +33,27 @@ router.get('/:id', async (req, res) => {
 });
 
 // create new product
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 
-  Product.create(req.body)
-    .then((product) => {
+  try {
+    const product = await Product.create(req.body);
 
-      // Check if tagIds is defined and not empty
-      if (req.body.tagIds && req.body.tagIds.length > 0) {
-        const productTagIdArr = req.body.tagIds.map((tag_id) => {
-          return {
-            product_id: product.id,
-            tag_id,
-          };
-        });
-        return ProductTag.bulkCreate(productTagIdArr)
-          .then(() => res.status(200).json(product));
-      }
+    // Check if tagIds is defined and not empty
+    if (req.body.tagIds && req.body.tagIds.length > 0) {
+      const productTagIdArr = req.body.tagIds.map((tag_id) => {
+        return {
+          product_id: product.id,
+          tag_id,
+        };
+      });
+      await ProductTag.bulkCreate(productTagIdArr);
+    }
 
-      res.status(200).json(product);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
-    });
+    res.status(200).json(product);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
 });
 
 // update product
@@ -71,7 +69,6 @@ router.put('/:id', async (req, res) => {
       const productTags = await ProductTag.findAll({
         where: { product_id: req.params.id }
       });
-
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       const newProductTags = req.body.tagIds
         .filter((tag_id) => !productTagIds.includes(tag_id))
@@ -81,7 +78,6 @@ router.put('/:id', async (req, res) => {
             tag_id,
           };
         });
-
       const productTagsToRemove = productTags
         .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
         .map(({ id }) => id);

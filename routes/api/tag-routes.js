@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
   try {
     // Validate request body
     const { name } = req.body;
-    if (!name) {
+    if (!name || name.trim().length === 0) {
       return res.status(400).json({ error: 'Name is required' });
     }
 
